@@ -4,4 +4,8 @@ var cardOne = "queen",
     cardThree = "king",
     cardFour = "king";
 
-  console.log(cardOne === cardTwo);
+if(cardOne === cardTwo){
+  window.alert('You found a match!');
+}else{
+  window.alert('Sorry, try again.');
+}
