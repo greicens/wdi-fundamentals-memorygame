@@ -1,17 +1,9 @@
 console.log("JS file is connected to HTML! Woo!")
-var cardOne = "queen",
-    cardTwo = "queen",
-    cardThree = "king",
-    cardFour = "king";
+var cards = ["queen", "queen", "king", "king"];
+var cardsInPlay = [];
 
-// if(cardOne === cardTwo){
-//   window.alert('You found a match!');
-// }else{
-//   window.alert('Sorry, try again.');
-// }
-console.log("sanity checkone")
 function createCard(){
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < cards.length; i++) {
     var card = document.createElement("div");
     card.className = 'card';
     document.getElementById('game-board').appendChild(card);
@@ -20,4 +12,37 @@ function createCard(){
 
 createCard();
 
-console.log("sanity checkTwo")
+function createBoard(){
+
+  for (var i = 0; i < cards.length; i++) {
+    var cardElement = card[i];
+    cardElement.setAttribute('data-card', cards[i]);
+    cardElement.addEventListener('click', isTwoCards);
+    cardElement.innerHTML = '<img src="img/kingCard.jpg" alt="King of Spades" />';
+  }
+}
+
+createBoard();
+
+// for (var i = 0; i < cards.length; i++) {
+//   cardElement.addEventListener('click', isTwoCards);
+//   cardElement.innerHTML = '<img src="kingCard" alt="King of Spades" />';.
+// }
+
+function isMatch(array){
+  if(array[0] === array[1]){
+    window.alert('You found a match!');
+  }else{
+    window.alert('Sorry, try again.');
+  }
+
+}
+
+function isTwoCards(){
+  cardsInPlay.push(this.getAttribute('data-card'));
+
+  if(cardsInPlay.length === 2){
+    isMatch(cardsInPlay);
+    cardsInPlay = [];
+  }
+}
